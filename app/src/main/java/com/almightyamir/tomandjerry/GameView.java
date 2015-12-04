@@ -22,7 +22,7 @@ public class GameView extends SurfaceView {
 
     // horizontal position (graphic is 205 pixels wide thus initialize right edge of graphic fall to left screen edge)
     private float jerryX = -205.0f;
-    private float jerryY = 100.0f; // vertical position
+    private float jerryY = 80.0f; // vertical position
 
     private float tomX = -50.0f;
     private float tomY = -101.0f;
@@ -109,7 +109,7 @@ public class GameView extends SurfaceView {
 
             tomY = tomY - 5; // tom travels up the screen 5 pixels per redraw
             Log.e("TomY 1 ", ""+tomY);
-            if ( tomY < 325 ) // if the tom goes beyond the bottom of the jerry graphic by 25 pixels
+            if ( tomY < 300 ) // if the tom goes beyond the bottom of the jerry graphic by 25 pixels
             {
                 Log.e("TomY ", ""+tomY);
                 tomX = -50.0f; // park tom
@@ -122,7 +122,7 @@ public class GameView extends SurfaceView {
             }
         }
 
-        jerryX = jerryX + 2.0f;
+        jerryX = jerryX + 3.0f;
         if(jerryX > getWidth()) jerryX = -205.0f;
 
         canvas.drawBitmap(jerry, jerryX, jerryY, null);
@@ -136,26 +136,19 @@ public class GameView extends SurfaceView {
             tomY = -101.0f;
         }
 
-        else
+        /*else
         {
             missedScore++;
             tomActive = false;
             tomX = -50.0f;
             tomY = -101.0f;
-        }
+        }*/
 
         //canvas.drawText("Missed: " + String.valueOf(missedScore), 320.0f, 50.0f, scorePaint);
 
         //canvas.drawColor(Color.WHITE);
         //canvas.drawBitmap(jerry, 50, 25, null);
 
-    }
-
-    public void onDestroy()
-    {
-        jerry.recycle();
-        jerry = null;
-        System.gc();
     }
 
     public void releaseTom(){
@@ -167,6 +160,17 @@ public class GameView extends SurfaceView {
         tomY = getHeight() - tom.getHeight() - 25;
         Log.e("Release Tom", "Ended "+tomActive);
 
+        Log.e("Tom Height", ""+tom.getHeight());
+
     }
+
+    public void onDestroy()
+    {
+        jerry.recycle();
+        jerry = null;
+        System.gc();
+    }
+
+
 
 }

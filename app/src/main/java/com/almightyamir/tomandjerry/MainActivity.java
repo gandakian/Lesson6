@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -21,14 +20,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         gv = new GameView(this);
-
-        FrameLayout gameLayout = new FrameLayout(this);
-
-        LinearLayout buttonLayout = new LinearLayout (this);
-        buttonLayout.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
         tomButton = new Button(this);
         tomButton.setWidth(250);
@@ -39,6 +33,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         tomButton.setText("Release Tom");
         tomButton.setOnClickListener(this);
         tomButton.setGravity(Gravity.CENTER);
+
+        FrameLayout gameLayout = new FrameLayout(this);
+
+        LinearLayout buttonLayout = new LinearLayout (this);
+        buttonLayout.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
 
         buttonLayout.addView(tomButton);
         gameLayout.addView(gv);
